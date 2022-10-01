@@ -4,9 +4,6 @@ you run this file.
 """
 
 
-from typing import Concatenate
-
-
 def print_list(items):
     """Print each item in the input list.
     
@@ -45,7 +42,7 @@ def long_words(words):
     
     for word in words:
         if len(word) > 4:
-            long_words.append(word)
+            long_words_list.append(word)
 
     return long_words_list
 
@@ -268,7 +265,16 @@ def average(numbers):
     a feel free to provide a good solution here.)
     """
 
-    return 0
+    empty_list = []
+    
+    if numbers == empty_list:
+        return(print("Please provide a list of numbers."))
+        # Wrote return the print statement so that user not only sees the
+        # error message printed, but we also end the execution of the
+        # function.  We should not proceed to the next line of code, which
+        # would raise an error because len(numbers) would be 0.
+
+    return sum_numbers(numbers) / len(numbers)
 
 
 def join_strings_with_comma(words):
@@ -288,7 +294,15 @@ def join_strings_with_comma(words):
         'Pretzel'
     """
 
-    return ""
+    string_with_comma = ""
+
+    for word in words:
+        if string_with_comma == "":
+            string_with_comma = word
+        else:
+            string_with_comma = string_with_comma + ", " + word
+    
+    return string_with_comma
 
 
 def reverse_list(items):
@@ -312,7 +326,40 @@ def reverse_list(items):
         ['apple', 'berry', 'cherry']
     """
 
-    return []
+    reversed_list = []
+    position = -1
+    
+    for element in items:
+        reversed_list.append(items[position])
+        position = position - 1
+    
+    return reversed_list
+    
+#   Above is simpler because we don't have to use `-abs()`.  `position` is a
+#   better variable name for the concept at hand. 
+
+#   count = 1
+
+#     for element in items:
+#         reversed_list.append(items[-abs(count)])
+#         count = count + 1  
+
+    # Alternative:
+    # return items [::-1]
+
+    # Alternative:
+    # reversed_list = []
+
+    # for i in range(len(items), 0):
+    #     reversed_list.append(items[i-1])
+    
+    # return reversed_list
+
+    # Considered another solution of creating another list that has the
+    # same elements as items, in the same order.  Then move elements within 
+    # this other list such that the order becomes reversed.  Seems
+    # inefficient, versus populating another list from the get-go with
+    # elements in the desired reversed order. 
 
 
 def reverse_list_in_place(items):
@@ -334,8 +381,49 @@ def reverse_list_in_place(items):
         >>> orig
         ['I', 'love', 'cookies']
     """
+    
+    # position = 0
+    # stored_element = None
+    # position_to_place_stored_element = -1 - position
+  
+    # for element in items:
+    #     if position >= int(len(items) / 2): # Remembering that int rounds down
+    #         break
+    #     stored_element = items[position] # Store this element for later use
+    #     # because we are about to put another element at the index where
+    #     # this element currently is.  Example: orig = ["a", "b", "c", "d"].
+    #     # Assign stored_element to "a"
+    #     items[position] = items[position_to_place_stored_element] # Example: 
+    #     # orig now looks like ["d", "b", "c", "d"]
+    #     items[position_to_place_stored_element] = stored_element # Example: 
+    #     # orig now looks like ["d", "b", "c", "a"].  Through these steps, we
+    #     # swapped "a" and "d".  In the next iteration, let's swap "b" and "c"
+    #     position = position + 1
+    #     # The if statement in the for loop is so that we stop making swaps
+    #     # once we have already made swaps for all respective pairings on 
+    #     # either side of the middle of the input list, at which point our 
+    #     # input list has been reversed. 
 
-    return []
+    # Better written solution:
+    for i in range(len(items) // 2): # Note A: if len(items) / 2 evaluates to
+        # 2.5, for example, 2 will be the last number in the range because
+        # range() increments by 1 by default and stops before 2.5
+        # Note B: error message if we have `for i in range(len(items) / 2)`:
+        # `TypeError: 'float' object cannot be interpreted as an integer`.
+        # range() works with integers.  Let's do integer division instead, 
+        # which rounds down by the way. 
+        position_to_place_stored_element = (i + 1) * -1 # `position` and
+        # `position_to_place_stored_element` respectively give us the index of
+        # each element in the pairing we intend to make a swap        
+        stored_element = items[i] 
+        items[i] = items[position_to_place_stored_element] 
+        items[position_to_place_stored_element] = stored_element 
+
+    # return items
+    # Problem did not say to return anything. 
+
+    # A solution that uses the function reverse_list(items) created above?:
+    # items = reverse_list(items)
 
 
 def duplicates(items):
@@ -361,8 +449,30 @@ def duplicates(items):
         ['apple', 'apple', 'berry']
     """
 
-    return []
+    dups = []
 
+    items = sorted(items)
+
+    for i in range(len(items) - 1):
+        if items[i] == items[i + 1]:
+            if items[i] not in dups:
+                dups.append(items[i])
+
+    return dups
+
+    # Alternative:
+    
+    # dups = []
+    # counts_of_elements = dict()
+
+    # for element in items:
+    #     counts_of_elements[element] = counts_of_elements.get(element, 0) + 1
+
+    # for key, value in counts_of_elements.items():
+    #     if value > 1:
+    #         dups.append(key)
+    
+    # return dups
 
 def find_letter_indices(words, letter):
     """Return list of indices where letter appears in each word.
@@ -389,7 +499,17 @@ def find_letter_indices(words, letter):
     `None`.)
     """
 
-    return []
+    letter_indices = []
+    
+    for word in words:
+        letter_index = None
+        for i in range(len(word)):
+            if word[i] == letter:
+                letter_index = i
+                break
+        letter_indices.append(letter_index) 
+
+    return letter_indices
 
 
 #####################################################################
