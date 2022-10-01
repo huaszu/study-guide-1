@@ -4,6 +4,9 @@ you run this file.
 """
 
 
+from typing import Concatenate
+
+
 def print_list(items):
     """Print each item in the input list.
     
@@ -179,7 +182,12 @@ def sum_numbers(numbers):
         0
     """
 
-    return None
+    total = 0
+
+    for number in numbers: 
+        total = total + number
+    
+    return total
 
 
 def mult_numbers(numbers):
@@ -202,7 +210,19 @@ def mult_numbers(numbers):
         1
     """
 
-    return None
+    product = 1
+
+    # How to have function return 0 quicker if 0 exists in the list?
+    # What if the list contains 0.0?  Or 0.00?  The function should return 0.
+    # Will `if 0 in numbers` help us know if 0.0 is in the list?
+    # if 0 in numbers:
+    #     product = 0
+    #     return product 
+    
+    for number in numbers:
+        product = product * number
+    
+    return product
 
 
 def join_strings(words):
@@ -221,7 +241,12 @@ def join_strings(words):
         ''
     """
 
-    return "Not the right thing"
+    joint_string = ""
+
+    for word in words:
+        joint_string = joint_string + word
+    
+    return joint_string
 
 
 def average(numbers):
