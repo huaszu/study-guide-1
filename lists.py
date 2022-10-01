@@ -38,13 +38,13 @@ def long_words(words):
         []
     """
 
-    long_words = []
+    long_words_list = []
     
     for word in words:
         if len(word) > 4:
             long_words.append(word)
 
-    return long_words
+    return long_words_list
 
 
 def n_long_words(words, n):
@@ -86,8 +86,15 @@ def smallest_int(numbers):
         >>> smallest_int([]) is None
         True
     """
+    
+    smallest_number = None
 
-    return 100
+    for number in numbers:
+        if smallest_number is None or number < smallest_number:
+        # Order matters. `if number < smallest_number or smallest_number is None:` led to an error.
+            smallest_number = number
+
+    return smallest_number
 
 
 def largest_int(numbers):
@@ -107,7 +114,13 @@ def largest_int(numbers):
         True
     """
 
-    return 0
+    largest_number = None
+
+    for number in numbers:
+        if largest_number is None or number > largest_number:
+            largest_number = number
+
+    return largest_number
 
 
 def halvesies(numbers):
@@ -125,7 +138,12 @@ def halvesies(numbers):
         [0.5, 2.5]
     """
 
-    return []
+    halved = []
+    
+    for number in numbers:
+        halved.append(number / 2)
+
+    return halved
 
 
 def word_lengths(words):
@@ -136,8 +154,13 @@ def word_lengths(words):
         >>> word_lengths(["hello", "hey", "hello", "spam"])
         [5, 3, 5, 4]
     """
+    
+    lengths = []
 
-    return []
+    for word in words:
+        lengths.append(len(word))
+
+    return lengths
 
 
 def sum_numbers(numbers):
