@@ -70,38 +70,66 @@ PART TWO:
 
 # 1. Write a function called 'hello_world' that does not take any arguments and
 #    prints "Hello World".
+def hello_world():
+    print("Hello World")
 
 
 # 2. Write a function called 'say_hi' that takes a name as a string and
 #    prints "Hi" followed by the name.
+def say_hi(name):
+    print("Hi", name)
 
 
 # 3. Write a function called 'print_product' that takes two integers and
 #    multiplies them together. Print the result.
+def print_product(integer1, integer2):
+    print(integer1 * integer2)
 
 
 # 4. Write a function called 'repeat_string' that takes a string and an integer
 #    and prints the string that many times
+def repeat_string(string, integer):
+    result_string = ""
+    for i in range(integer): # Remember that range() excludes the stop
+        result_string = result_string + string
+    print(result_string)
 
 
 # 5. Write a function called 'print_sign' that takes an integer and prints
 #    "Higher than 0" if higher than zero and "Lower than 0" if lower than zero.
 #    If the integer is zero, print "Zero".
+def print_sign(integer):
+    if integer > 0:
+        print("Higher than 0")
+    elif integer < 0:
+        print("Lower than 0")
+    else:
+        print("Zero")
 
 
 # 6. Write a function called 'is_divisible_by_three' that takes an integer and
 #    returns a boolean (True or False), depending on whether the number is
 #    evenly divisible by 3.
+def is_divisible_by_three(integer):
+    return integer % 3 == 0
 
 
 # 7. Write a function called 'num_spaces' that takes a sentence as one string
 #    and returns the number of spaces.
+def num_spaces(sentence):
+    count = 0
+    for character in sentence:
+        if character == " ":
+            count = count + 1
+    return count
 
 
 # 8. Write a function called 'total_meal_price' that can be passed a meal price
 #    and a tip percentage. It should return the total amount paid
 #    (price + price * tip). **However:** passing in the tip percentage should
 #    be optional; if not given, it should default to 15%.
+def total_meal_price(price, tip_percentage = 0.15):
+    return price + price * tip_percentage
 
 
 # 9. Write a function called 'sign_and_parity' that takes an integer as an
@@ -112,6 +140,58 @@ PART TWO:
 #    Then, write code that shows the calling of this function on a number and
 #    unpack what is returned into two variables --- sign and parity (whether
 #    it's even or odd). Print sign and parity.
+def sign_and_parity(integer):
+    sign_and_parity_list = []
+    sign = None
+    parity = None
+    if integer > 0:
+        sign = "Positive"
+    elif integer < 0:
+        sign = "Negative"        
+    else:
+        sign = "The integer is zero"
+
+    if integer % 2 == 0:
+        parity = "Even"
+    else: 
+        parity = "Odd"
+    sign_and_parity_list.append(sign)
+    sign_and_parity_list.append(parity)
+    return sign_and_parity_list
+
+
+# Old solution: # We don't need these if statements to be nested
+# def sign_and_parity(integer):
+#     sign_and_parity_list = []
+#     sign = None
+#     parity = None
+#     if integer > 0:
+#         sign = "Positive"
+#         if integer % 2 == 0:
+#             parity = "Even"
+#         else: 
+#             parity = "Odd"
+#     elif integer < 0:
+#         sign = "Negative"
+#         if integer % 2 == 0:
+#             parity = "Even"
+#         else: 
+#             parity = "Odd"        
+#     else:
+#         sign = "The integer is zero"
+#     sign_and_parity_list.append(sign)
+#     sign_and_parity_list.append(parity)
+#     return sign_and_parity_list
+
+sign_and_parity(3)
+our_sign, our_parity = sign_and_parity(3)
+print(our_sign)
+print(our_parity)
+
+sign_and_parity(-2)
+our_sign, our_parity = sign_and_parity(-2)
+print(our_sign)
+print(our_parity)
 
 
 ###############################################################################
