@@ -201,6 +201,9 @@ print(our_parity)
 # 1. Write a function called full_title that takes a name and a job title as
 #    parameters, making it so the job title defaults to "Engineer" if a job
 #    title is not passed in. Return the person's title and name in one string.
+def full_title(name, job_title = "Engineer"):
+    return job_title + " " + name
+
 
 # 2. Write a function called write_letter that, given a recipient name & job
 #    title and a sender name, prints the following letter:
@@ -210,6 +213,21 @@ print(our_parity)
 #
 #    Use the function from #1 to construct the full title for the letter's
 #    greeting.
+def write_letter(
+    recipient_name, 
+    recipient_job_title = "Engineer", 
+    sender_name = "Your best friend"):
+    print("Dear " + full_title(recipient_name, recipient_job_title) + 
+    ", I think you are amazing! Sincerely, " + sender_name)
+
+
+# Based on the example, actually don't put Sincerely on a new line
+# def write_letter(
+#     recipient_name, 
+#     recipient_job_title = "Engineer", 
+#     sender_name = "Your best friend"):
+#     print("Dear " + full_title(recipient_name, recipient_job_title) + 
+#     ", I think you are amazing! \nSincerely, " + sender_name)
 
 
 ###############################################################################
